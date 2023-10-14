@@ -1,5 +1,6 @@
+import gqlQuery from "../lib/shopifyService";
+
 export default async function Products() {
-    let products = [];
 
     let query = `{
         products(first: 5) {
@@ -10,24 +11,7 @@ export default async function Products() {
           }
         }
       }`
-    console.log(process.env.SHOPIFY_GRAPHQL);
-    if(process.env.SHOPIFY_GRAPHQL != undefined) {
-        let variables= {};
-        let response = await fetch(
-            process.env.SHOPIFY_GRAPHQL,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Shopify-Storefront-Access-Token': process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN
-                },
-                body: JSON.stringify({ query, variables })
-            }
-        );
-        console.log(response);
-        products = await response.json();
-        console.log(products);
-    }
+     let products = await gqlQuery(query, {});
 
     
 
