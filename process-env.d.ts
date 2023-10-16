@@ -7,6 +7,7 @@ declare global {
         SHOPIFY_API_KEY: string
         SHOPIFY_API_SECRET_KEY: string
         SHOPIFY_ADMIN_API_ACCESS_TOKEN: string
+        BASE_URL: string
       }
     }
   }
