@@ -3,8 +3,8 @@ import { createContext, useState } from "react";
 
 
 export type CartContextType = {
-    cartItems: string[];
-    addItemToCart: (item: string) => void;
+    cartItems: {handle: string, variantId: string}[];
+    addItemToCart: (item: {handle: string, variantId: string}) => void;
 };
 const CartContext = createContext<CartContextType>({cartItems: [], addItemToCart: () => {}});
 
@@ -13,13 +13,13 @@ export const CartProvider = ({ children } : {
     children: React.ReactNode
   }) => {
 
-    const[cartItems, setCartItems] = useState<string[]>([]);
+    const[cartItems, setCartItems] = useState<{handle: string, variantId: string}[]>([]);
 
-    const addItemToCart = (item: string) => {
+    const addItemToCart = (item: {handle: string, variantId: string}) => {
         let isItemInCart = false;
 
         cartItems.forEach((currentItem) => {
-            if(currentItem === item) {
+            if(currentItem.handle === item.handle) {
                 isItemInCart = true;
             }
         })
@@ -27,7 +27,7 @@ export const CartProvider = ({ children } : {
         if(isItemInCart) {
 
         } else {
-            let newCartItems: string[] = [...(cartItems), item];
+            let newCartItems: {handle: string, variantId: string}[] = [...(cartItems), item];
             setCartItems(newCartItems);
         }
     }

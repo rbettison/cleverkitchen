@@ -1,4 +1,4 @@
-import Checkout from "@/app/checkout/components/Checkout";
+import Checkout from "@/app/checkout/components/QuickCheckout";
 import gqlQuery from "@/app/lib/shopifyService";
 import AddToCart from "@/app/cart/components/AddToCart";
 
@@ -24,7 +24,7 @@ export default async function Product({params} :
     return (
         <>
         <h1>Product Page for {product.data.product.title}</h1>
-        <AddToCart handle={params.id}/>
+        <AddToCart handle={params.id} variantId={product.data.product.variants.edges[0].node.id}/>
         <Checkout variantId={product.data.product.variants.edges[0].node.id}/>
         </>
     )

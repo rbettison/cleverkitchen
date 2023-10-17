@@ -1,22 +1,29 @@
 "use client";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import CartContext from "../CartContext";
 
 
-export default function Checkout(props: {variantId: string}) {
+export default function Checkout() {
 
-    const [loading, setLoading] = useState(false);    
+    const [loading, setLoading] = useState(false); 
+    const { cartItems } = useContext(CartContext);   
 
     async function checkout() {
         setLoading(true);
-        let url = "/checkout";
-        let resp = await fetch("/checkout?variantId=" + props.variantId)
+        let resp = await fetch("/checkout", {
+            method: 'POST',
+            body: JSON.stringify({
+                variants : cartItems.map((item) => item.variantId)
+            })
+        })
         let json = await resp.json();
+        console.log(JSON.stringify(json));
         window.location.href = json.data.checkoutCreate.checkout.webUrl;
     }
 
     return (
         <>
-        <button onClick={checkout}>Pay now!</button>
+        <button onClick={checkout}>Check out cart</button>
         {loading && <p>Checking out...</p>}
         </>
     )

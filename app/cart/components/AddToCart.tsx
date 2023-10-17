@@ -2,12 +2,17 @@
 import CartContext from "@/app/checkout/CartContext";
 import { useContext } from "react";
 
-export default function AddToCart(props: {handle: string}) {
+export default function AddToCart(props: {handle: string, variantId: string}) {
 
     const {addItemToCart} = useContext(CartContext)
 
+
+
     const addToCart = () => {
-        addItemToCart(props.handle);
+        addItemToCart({
+            handle: props.handle,
+            variantId: props.variantId
+        });
     }
 
     return (
