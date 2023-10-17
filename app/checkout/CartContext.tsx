@@ -1,15 +1,17 @@
 "use client";
-import { Dispatch, SetStateAction, createContext, useState } from "react";
+import { createContext, useState } from "react";
 
 
-type CartContextType = {
-    cartItems: string[],
-    addItemToCart: (item: string) => void
+export type CartContextType = {
+    cartItems: string[];
+    addItemToCart: (item: string) => void;
 };
-const CartContext = createContext<CartContextType | null>(null);
+const CartContext = createContext<CartContextType>({cartItems: [], addItemToCart: () => {}});
 
 
-export const CartProvider = ({ children }) => {
+export const CartProvider = ({ children } : {
+    children: React.ReactNode
+  }) => {
 
     const[cartItems, setCartItems] = useState<string[]>([]);
 
