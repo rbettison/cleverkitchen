@@ -1,5 +1,5 @@
-import Link from "next/link";
 import gqlQuery from "../lib/shopifyService";
+import ProductCard from "../components/ProductCard";
 
 export default async function Products() {
 
@@ -8,20 +8,39 @@ export default async function Products() {
           edges {
               node {
                   title,
-                  handle
+                  handle,
+                  priceRange {
+                    maxVariantPrice {
+                      amount, 
+                      currencyCode
+                    }
+                  },
+                  images(first: 1) {
+                    edges {
+                        node {
+                        url
+                        }
+                    }
+                  }
               }
           }
         }
       }`
      let products = await gqlQuery(query, {});
-
     
 
     return (
-        <>
-            <h1>All Products</h1>
-            <h2>Here, you'll see lots of cool products.</h2>
-            {products.data.products.edges.map((edge: any) => <Link href={`/products/${edge.node.handle}`}><h3 key={edge.node.handle}>{edge.node.title}</h3></Link>)}
-        </>
+        <div className="container p-8 col-span-5">
+            <h1 className="text-4xl text-primary-200 pb-4 border-b border-primary-100">Our Products</h1>
+            <h2 className="text-6xl text-primary-200 pb-10 pt-10 italic">Carefully curated to make your kitchen more clever.</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4 shadow-md p-5 w-full bg-gray-100">
+            {products.data.products.edges.map((edge: any) => <ProductCard title={edge.node.title} 
+                                                                            handle={edge.node.handle}
+                                                                            image={edge.node.images.edges[0] != null ?
+                                                                                    edge.node.images.edges[0].node.url : ''}
+                                                                            price={edge.node.priceRange.maxVariantPrice.amount}
+                                                                            currencyCode={edge.node.priceRange.maxVariantPrice.currencyCode} />)}
+            </div>
+        </div>
     )
 }
