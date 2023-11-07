@@ -9,6 +9,18 @@ export default function Header() {
     const { cartItems } = useContext(CartContext)
 
     return (
-        <p>hi!</p>
+        <>
+            <div className='col-start-1 col-end-7 flex justify-center'>
+                CLEVER KITCHEN
+            </div>
+            <div className='col-start-1 col-end-7 flex justify-around justify-items-center'>
+                <Link href={'/products'}>
+                    PRODUCTS
+                </Link>
+                <Link href={'/products'}>
+                    CART
+                </Link>
+            </div>
+        </>
     )
 }
