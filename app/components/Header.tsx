@@ -17,7 +17,7 @@ export default function Header() {
                 <Link href={'/products'}>
                     PRODUCTS
                 </Link>
-                <Link href={'/products'}>
+                <Link href={'/cart'}>
                     CART
                 </Link>
             </div>
