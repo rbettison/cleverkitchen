@@ -16,7 +16,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        main: ['Playfair Display']
+        main: ['Helvetica Neue', 'Playfair Display']
       }
     },
   },

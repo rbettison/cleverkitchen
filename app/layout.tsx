@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { CartProvider } from './checkout/CartContext';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,11 +17,11 @@ export default function RootLayout({
   return (
     <CartProvider>
     <html lang="en">
-        <body className="font-main grid grid-cols-6 bg-gray-200 text-primary-200 box-border">
+        <body className="container font-main m-auto bg-gray-200 text-primary-200 box-border">
         <Header />
 
           {children}
-        <h1 className="col-span-6 text-center">Footer</h1>
+        <Footer />
         </body>
     </html>
     </CartProvider>

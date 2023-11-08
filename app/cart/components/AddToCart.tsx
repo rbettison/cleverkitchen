@@ -16,6 +16,8 @@ export default function AddToCart(props: {handle: string, variantId: string}) {
     }
 
     return (
-        <button onClick={addToCart}>Add to Cart!</button>
+        <div className="mt-6">
+            <a href="#" className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700" onClick={addToCart}>Add to Cart</a>
+        </div>
     )
 }
