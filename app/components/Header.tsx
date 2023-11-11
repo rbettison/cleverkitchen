@@ -10,15 +10,17 @@ export default function Header() {
 
     return (
         <>
-            <div className='col-start-1 col-end-7 flex justify-center'>
-                CLEVER KITCHEN
+            <div className='col-span-full flex justify-center pt-2 pb-2'>
+                <Link href={'/'}>
+                    Clever Kitchen
+                </Link>
             </div>
-            <div className='col-start-1 col-end-7 flex justify-around justify-items-center'>
+            <div className='col-span-full flex-col text-center sm:flex-row sm:justify-around flex md:justify-around pt-2 pb-2'>
                 <Link href={'/products'}>
-                    PRODUCTS
+                    Products
                 </Link>
                 <Link href={'/cart'}>
-                    CART
+                    Cart
                 </Link>
             </div>
         </>
