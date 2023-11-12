@@ -30,17 +30,20 @@ export default async function Products() {
     
 
     return (
-        <div className="container p-8 col-span-5">
-            <h1 className="text-4xl text-primary-200 pb-4 border-b border-primary-100">Our Products</h1>
-            <h2 className="text-6xl text-primary-200 pb-10 pt-10 italic">Carefully curated to make your kitchen more clever.</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4 shadow-md p-5 w-full bg-gray-100">
-            {products.data.products.edges.map((edge: any) => <ProductCard title={edge.node.title} 
-                                                                            handle={edge.node.handle}
-                                                                            image={edge.node.images.edges[0] != null ?
-                                                                                    edge.node.images.edges[0].node.url : ''}
-                                                                            price={edge.node.priceRange.maxVariantPrice.amount}
-                                                                            currencyCode={edge.node.priceRange.maxVariantPrice.currencyCode} />)}
+
+        <div className="h-screen container col-span-5 bg-fixed">
+            <h1 className="text-4xl text-primary-200 text-center pb-4 border-primary-100">Our Products</h1>
+            <div className="h-96 bg-bottom bg-50% bg-no-repeat bg-cover" style={{ backgroundImage: `url('/AllProductsBackground.png')` }}>
+                <div className="px-5 pt-80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-5 w-full">
+                    {products.data.products.edges.map((edge: any) => <ProductCard title={edge.node.title}
+                                                                                  handle={edge.node.handle}
+                                                                                  image={edge.node.images.edges[0] != null ?
+                                                                                      edge.node.images.edges[0].node.url : ''}
+                                                                                  price={edge.node.priceRange.maxVariantPrice.amount}
+                                                                                  currencyCode={edge.node.priceRange.maxVariantPrice.currencyCode} />)}
+                </div>
             </div>
+
         </div>
     )
 }
