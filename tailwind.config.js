@@ -5,6 +5,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'hero-pattern': "url('/AllProductsBackground.png')"
+      },
+      spacing: {
+        '128': '32rem',
+      },
       colors: {
         primary: {
           100: "#96BDC6", 

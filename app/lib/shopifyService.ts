@@ -1,6 +1,4 @@
 export default async function gqlQuery(query : string, variables: {}) {
-    console.log('Performing query: ' + query);
-    console.log('With variables: ' + JSON.stringify(variables));
     
     let response = await fetch(
         process.env.SHOPIFY_GRAPHQL,
@@ -14,10 +12,7 @@ export default async function gqlQuery(query : string, variables: {}) {
             cache: "no-store"
         }
     );
-    console.log(response);
     let respJson = await response.json();
-    console.log('resp jsn: ' + respJson);
-    console.log('resp.data: ' +  JSON.stringify(respJson.data));
     return respJson;
 
 }

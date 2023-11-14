@@ -17,9 +17,8 @@ export default function RootLayout({
   return (
     <CartProvider>
     <html lang="en">
-        <body className="container font-main m-auto bg-gray-200 text-primary-200 box-border">
+        <body className="relative container font-bold m-auto text-blue-400 box-border">
         <Header />
-
           {children}
         <Footer />
         </body>

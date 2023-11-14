@@ -11,15 +11,15 @@ export default function Header() {
     return (
         <>
             <div className='col-span-full flex justify-center pt-2 pb-2'>
-                <Link href={'/'}>
+                <Link href={'/'} className="bg-black text-white">
                     Clever Kitchen
                 </Link>
             </div>
             <div className='col-span-full flex-col text-center sm:flex-row sm:justify-around flex md:justify-around pt-2 pb-2'>
-                <Link href={'/products'}>
+                <Link href={'/products'} className="bg-black text-white">
                     Products
                 </Link>
-                <Link href={'/cart'}>
+                <Link href={'/cart'} className="bg-black text-white">
                     Cart
                 </Link>
             </div>

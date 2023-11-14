@@ -1,32 +1,8 @@
-import gqlQuery from "../lib/shopifyService";
 import ProductCard from "../components/ProductCard";
+import {getProducts} from "../server/ProductService"
 
 export default async function Products() {
-
-    let query = `{
-        products(first: 5) {
-          edges {
-              node {
-                  title,
-                  handle,
-                  priceRange {
-                    maxVariantPrice {
-                      amount, 
-                      currencyCode
-                    }
-                  },
-                  images(first: 1) {
-                    edges {
-                        node {
-                        url
-                        }
-                    }
-                  }
-              }
-          }
-        }
-      }`
-     let products = await gqlQuery(query, {});
+     let products = await getProducts(5);
     
 
     return (
