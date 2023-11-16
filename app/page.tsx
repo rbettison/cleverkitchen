@@ -17,7 +17,7 @@ export default async function Home() {
     <div className="mt-24">
       <p className="text-center text-2xl text-black">Featured Products</p>
       <div className="flex sm:flex-row flex-col p-8 sm:p-0 justify-evenly">
-        {products.data.products.edges.map((edge: any) => <ProductCard title={edge.node.title}
+        {products.data.products.edges.map((edge: any) => <ProductCard key={edge.node.handle} title={edge.node.title}
                                                                                   handle={edge.node.handle}
                                                                                   image={edge.node.images.edges[0] != null ?
                                                                                       edge.node.images.edges[0].node.url : ''}
