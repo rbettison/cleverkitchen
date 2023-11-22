@@ -1,10 +1,12 @@
-import Checkout from "../checkout/components/Checkout";
+import CartItems from "./components/CartItems";
+import OrderSummary from "./components/OrderSummary";
 
 export default function Cart() {
     return (
         <h1>
             Your Cart
-            <Checkout />
+            <CartItems />
+            <OrderSummary />
         </h1>
     )
 }

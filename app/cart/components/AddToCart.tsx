@@ -1,17 +1,19 @@
 "use client"
-import CartContext from "@/app/checkout/CartContext";
+import CartContext, { CartItem } from "@/app/checkout/CartContext";
 import { useContext } from "react";
 
-export default function AddToCart(props: {handle: string, variantId: string}) {
+export default function AddToCart({product}: {product: CartItem}) {
 
     const {addItemToCart} = useContext(CartContext)
 
-
-
     const addToCart = () => {
         addItemToCart({
-            handle: props.handle,
-            variantId: props.variantId
+            title: product.title,
+            handle: product.handle,
+            variantId: product.variantId,
+            image: product.image,
+            price: product.price,
+            quantity: 1
         });
     }
 
