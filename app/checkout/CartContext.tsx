@@ -29,11 +29,12 @@ export const CartProvider = ({ children } : {
   }) => {
 
     const getLocalCartData = () => {
-        if(window != undefined) {
+        if(typeof window !== 'undefined') {
             let localCartItems = localStorage.getItem("cartItems");
             if(localCartItems != null) return JSON.parse(localCartItems);
             return []
         }
+        return [];
     }
     
     const[cartItems, setCartItems] = useState<CartItem[]>(getLocalCartData());
