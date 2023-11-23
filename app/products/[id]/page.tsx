@@ -10,7 +10,6 @@ export default async function Product({params} :
 
     let product = await getProductByHandle(params.id);
     let images : string[] = product.data.product.images.edges.map((edge: {node: { url : string}}) => edge.node.url);
-    console.log(product);
 
     return (
         <div className="container p-8 col-span-5">

@@ -13,7 +13,12 @@ export default function Checkout() {
         let resp = await fetch("/checkout", {
             method: 'POST',
             body: JSON.stringify({
-                variants : cartItems.map((item) => item.variantId)
+                variants : cartItems.map((item) => {
+                    return {
+                        variant:item.variantId,
+                        quantity: item.quantity
+                    }
+                })
             })
         })
         let json = await resp.json();

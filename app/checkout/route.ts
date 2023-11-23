@@ -6,7 +6,7 @@ let checkoutMutation = `mutation CheckoutCreate($variantId: ID!) {
   checkoutCreate(input: {
     lineItems: {
         variantId: $variantId,
-      quantity: 1
+        quantity: $quantity
     }
   }) {
     checkout {
@@ -43,11 +43,11 @@ export async function POST(request: NextRequest) {
 
   console.log('reqJson:' + JSON.stringify(reqJson));
   let varString = `[`
-  reqJson.variants.forEach((variant: string) => {
+  reqJson.variants.forEach((variant: {variant: string, quantity: string}) => {
 
     varString = varString + `{
-      variantId: "${variant}",
-      quantity: 1
+      variantId: "${variant.variant}",
+      quantity: ${variant.quantity}
     },`
   })
   varString = varString + ']'
