@@ -9,10 +9,14 @@ export default function OrderSummary() {
 
     return (
         <>  
+            <div className="text-center p-10">
             <p>Order Summary</p>
             <p>Total: {cartTotal}</p>
+            <p>Tax: £0</p>
+            <p>Shipping: £0</p>
 
             <Checkout />
+            </div>
         </>
     )
 }

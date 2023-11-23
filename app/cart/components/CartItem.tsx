@@ -24,12 +24,21 @@ export default function CartItem({item}: {item: CartItem}) {
 
     return(
         <>
-        <p>Product: {item.title}</p>
-        <p>CartItem: {item.handle}</p>
-        <img src={item.image} />
-        <p>price: {item.price}</p>
-        <p>quantity:</p> <input onChange={handleQuantityChange} value={quantity}/>
-        <button onClick={handleRemoveItem}>remove</button>
+        <div className="grid grid-cols-2 grid-rows-5 p-5 border-b-sky-800 border rounded-lg">
+            <img src={item.image} 
+                className="cols-start-1 col-span-1 row-start-1 row-span-4"/>
+            <div className="cols-start-2 col-span-1 row-start-1 row-span-4 p-3">
+                <p>Product: {item.title}</p>
+                <p>CartItem: {item.handle}</p>
+                <p>price: {item.price}</p>
+            </div>
+            <div className="row-start-5 row-span-1 col-span-2 flex flex-row justify-center content-center">
+                <div><p>quantity:</p> <input onChange={handleQuantityChange} value={quantity}/></div>
+                <button onClick={handleRemoveItem}>remove</button>
+            </div>
+        </div>
+        
+        
 
         </>
     )

@@ -9,7 +9,9 @@ export default function CartItems() {
 
     return(
         <>
+        <div className="flex flex-col gap-4">
         {cartItems.map((item) => <CartItem key={item.variantId} item={item}/>)}
+        </div>
         </>
     )
 }

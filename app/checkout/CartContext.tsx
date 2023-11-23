@@ -28,21 +28,25 @@ export const CartProvider = ({ children } : {
     children: React.ReactNode
   }) => {
 
-    const[cartItems, setCartItems] = useState<CartItem[]>([]);
+    const getLocalCartData = () => {
+        if(window != undefined) {
+            let localCartItems = localStorage.getItem("cartItems");
+            if(localCartItems != null) return JSON.parse(localCartItems);
+            return []
+        }
+    }
+    
+    const[cartItems, setCartItems] = useState<CartItem[]>(getLocalCartData());
     const [cartTotal, setCartTotal] = useState<number>(0);
 
-
-    // useReducer instead here?
+    
     useEffect(() => {
-        console.log('use effect triggered');
         let total: number = 0;
         cartItems.forEach((cartItem) => {
-            console.log('cartItem.quantity: ' + cartItem.quantity);
-            console.log('cartItem.price: ' + cartItem.price);
             total = Number(total) + (Number(cartItem.quantity) * Number(cartItem.price));
         })
-        console.log('total: ' + total);
         setCartTotal(total);
+        localStorage.setItem("cartItems", JSON.stringify(cartItems))
     }, [cartItems])
 
     const addItemToCart = (item: CartItem) => {
