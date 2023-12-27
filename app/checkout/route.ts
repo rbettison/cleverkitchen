@@ -53,7 +53,9 @@ export async function POST(request: NextRequest) {
   varString = varString + ']'
   let checkout = multipleCheckoutMutation.replace("****", varString);
 
+  console.log('checkoutString: ' + checkout);
   let json = await gqlQuery(checkout, {});
 
+  console.log('checkout api: ' + JSON.stringify(json));
   return NextResponse.json(json);
 }

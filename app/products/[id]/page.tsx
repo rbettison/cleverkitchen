@@ -6,12 +6,12 @@ import {getProductByHandle, getProducts} from "@/app/server/ProductService";
 import ProductCard from "@/app/components/ProductCard";
 
 
-export default async function Product({params} : 
+export default async function Product({params} :
     { params: { id: string } }) {
 
     let products = await getProducts(2);
     let product = await getProductByHandle(params.id);
-    // console.log(product)
+    console.log(product)
     // console.log(product.data.product)
     console.log(product.data.product.variants)
     let images : string[] = product.data.product.images.edges.map((edge: {node: { url : string}}) => edge.node.url);

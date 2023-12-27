@@ -10,6 +10,9 @@ export default function Checkout() {
 
     async function checkout() {
         setLoading(true);
+        cartItems.forEach(item => {
+            console.log("cart item: ", item)
+        })
         let resp = await fetch("/checkout", {
             method: 'POST',
             body: JSON.stringify({
@@ -21,6 +24,7 @@ export default function Checkout() {
                 })
             })
         })
+        console.log('resp: ' + JSON.stringify(resp));
         let json = await resp.json();
         console.log(JSON.stringify(json));
         window.location.href = json.data.checkoutCreate.checkout.webUrl;
