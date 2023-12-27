@@ -2,7 +2,7 @@ import ProductCard from "../components/ProductCard";
 import {getProducts} from "../server/ProductService"
 
 export default async function Products() {
-     let products = await getProducts(5);
+     let products = await getProducts(8);
     
 
     return (
