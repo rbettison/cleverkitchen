@@ -8,20 +8,21 @@ export default async function Home() {
   let products = await getProducts(6);
   return (
     <>
-    <div className='top-0 left-0 absolute min-w-full h-screen bg-hero-pattern bg-cover -z-10 overflow-auto'>
+    
+    <div className="w-full gap-8 mb-48 sm:h-screen sm:grid flex flex-col text-center grid-cols-4 grid-rows-5 justify-between">
+      <p className="sm:text-[84px] text-4xl leading-tight font-light sm:pl-24 row-start-2 col-span-2">Effortless cooking, <span className="whitespace-nowrap">with <span className="font-bold">clever kitchen</span></span> solutions</p>
+      <div className='sm:top-0 sm:left-0 top-0 left-0 sm:absolute sm:min-w-full sm:h-screen w-screen h-[300px] bg-hero-pattern bg-contain bg-no-repeat sm:bg-cover -z-10 overflow-auto'>
+      </div>
+      <p className="sm:text-[24px] text-xl font-light row-start-4 col-span-2 sm:pl-24">From time-saving marvels to space-efficient solutions, revolutionize the way you cook with clever kitchen gadgets.</p>
     </div>
-    <div className="w-full h-screen grid grid-cols-4 grid-rows-5">
-      <p className="text-[84px] leading-tight font-light pl-24 row-start-2 col-span-2">Effortless cooking, <span className="whitespace-nowrap">with <span className="font-bold">clever kitchen</span></span> solutions</p>
-      <p className="text-[24px] font-light row-start-4 col-span-2 pl-24">From time-saving marvels to space-efficient solutions, revolutionize the way you cook with clever kitchen gadgets.</p>
-    </div>
-    <div className="h-screen flex flex-col items-center">
+    <div className="sm:h-screen h-auto flex flex-col items-center text-center">
       <div className="font-light text-[36px]">
         Not sure what you are looking for?
       </div>
       <div className="font-bold text-[36px]">
         Check out our tailored recommendations
       </div>
-      <div className="grid grid-rows-2 grid-cols-3 p-8 w-full gap-8">
+      <div className="sm:grid flex flex-col grid-rows-2 grid-cols-3 p-8 w-full gap-8">
         {products.data.products.edges.map((edge: any) => <ProductCard key={edge.node.handle} title={edge.node.title}
                                                                                   handle={edge.node.handle}
                                                                                   image={edge.node.images.edges[0] != null ?
@@ -32,17 +33,17 @@ export default async function Home() {
 
     </div>
 
-    <div className="flex flex-row w-4/5 justify-evenly gap-8 m-auto">
+    <div className="flex sm:flex-row flex-col w-4/5 justify-evenly gap-8 m-auto text-center sm:text-left">
           <div>
             <p className="font-light text-[36px]">HOW TO USE OUR <span className="font-bold">CLEVER KITCHEN</span> GADGETS</p>
             <p className="font-light text-[24px]">Whether you&apos;re a novice or a seasoned chef, our tiktok video tutorials are here to elevate your cooking game</p>                                                                        
           </div>
-          <div className="h-[300px] w-[700px] border border-borderVideo-100 rounded-lg bg-video-image bg-cover">
+          <div className="sm:h-[300px] h-[200px] w-[300px] sm:w-[700px] border border-borderVideo-100 rounded-lg bg-video-image bg-cover">
                                                                                   
           </div>
     </div>
 
-    <div className="flex flex-row justify-center gap-12 my-24">
+    <div className="flex sm:flex-row flex-col justify-center gap-12 my-24">
       <div className="flex flex-col items-center">
         <svg width="34" height="33" viewBox="0 0 34 33" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M10.12 25.8399C11.6222 25.8399 12.84 24.6222 12.84 23.1199C12.84 21.6176 11.6222 20.3999 10.12 20.3999C8.61778 20.3999 7.39999 21.6176 7.39999 23.1199C7.39999 24.6222 8.61778 25.8399 10.12 25.8399Z" stroke="#363636" strokeWidth="2.04" strokeMiterlimit="1.5" strokeLinecap="round" strokeLinejoin="round"/>
