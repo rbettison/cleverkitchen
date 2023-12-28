@@ -10,7 +10,7 @@ export default async function Product({params} :
 
     let products = await getProducts(2);
     let product = await getProductByHandle(params.id);
-    console.log(product.data.product.variants)
+    let variants = product.data.product.variants.edges;
     let images : string[] = product.data.product.images.edges.map((edge: {node: { url : string}}) => edge.node.url);
 
     return (
@@ -18,8 +18,6 @@ export default async function Product({params} :
             <div>
                 <div className={"container p-8 flex justify-around flex-col md:flex-row"} id={'product pic and description row'}>
                     <div className={""}>
-                        {/*<img src={product.data.product.images.edges[0] != null ?*/}
-                        {/*    product.data.product.images.edges[0].node.url : ''} className="py-4 w-full h-40 min-h-32 object-cover"/>*/}
 
                         <ProductCard key={params.id} title={product.data.product.title}
                                      handle={params.id}
@@ -31,6 +29,12 @@ export default async function Product({params} :
                     <div className={"flex flex-col"}>
                         <div>{product.data.product.title}</div>
                         <div>description</div>
+                        <div>
+                            <p>variant:</p>
+                            <select>
+                                {variants.map(index => <option key={index} value={index}>{index.node.id}</option>)}
+                            </select>
+                        </div>
                         <AddToCart product={{ title: product.data.product.title,
                             handle: params.id,
                             variantId: product.data.product.variants.edges[0].node.id,

@@ -33,7 +33,7 @@ let productHandleQuery = `query SingleProduct($handle: String!) {
         currencyCode
       }
     },
-    variants(first: 1) {
+    variants(first: 5) {
       edges {
         node {
           id
