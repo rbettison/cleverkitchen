@@ -1,9 +1,8 @@
-import Checkout from "@/app/checkout/components/Checkout";
-import gqlQuery from "@/app/lib/shopifyService";
 import AddToCart from "@/app/cart/components/AddToCart";
-import ImageCarousel from "@/app/components/ImageCarousel";
 import {getProductByHandle, getProducts} from "@/app/server/ProductService";
 import ProductCard from "@/app/components/ProductCard";
+import ButtonWithLink from "@/app/cart/components/ButtonWithLink";
+import Link from "next/link";
 
 
 export default async function Product({params} : 
@@ -11,8 +10,6 @@ export default async function Product({params} :
 
     let products = await getProducts(2);
     let product = await getProductByHandle(params.id);
-    // console.log(product)
-    // console.log(product.data.product)
     console.log(product.data.product.variants)
     let images : string[] = product.data.product.images.edges.map((edge: {node: { url : string}}) => edge.node.url);
 
@@ -40,7 +37,9 @@ export default async function Product({params} :
                             image: product.data.product.images.edges[0]?.node.url || "",
                             price: product.data.product.priceRange.maxVariantPrice.amount,
                             quantity: 1}}/>
-                        <Checkout />
+                        <ButtonWithLink btnLink={'/cart'} >
+                            Go To Cart
+                        </ButtonWithLink>
                     </div>
                 </div>
                 <p className="text-center text-2xl text-black">Related Products</p>
@@ -54,21 +53,6 @@ export default async function Product({params} :
                 </div>
             </div>
         </>
-        // <div className="container p-8 col-span-5">
-        //   <h1 className="text-4xl text-primary-200 pb-4 border-b border-primary-100">{product.data.product.title}</h1>
-        //   <div className="grid grid-cols-2 p-5 w-full gap-4 bg-gray-100">
-        //   <div className="grid grid-cols-2 gap-4">
-        //   <AddToCart product={{ title: product.data.product.title,
-        //                         handle: params.id,
-        //                         variantId: product.data.product.variants.edges[0].node.id,
-        //                         image: product.data.product.images.edges[0]?.node.url || "",
-        //                         price: product.data.product.priceRange.maxVariantPrice.amount,
-        //                         quantity: 1}}/>
-        //   <Checkout />
-        //   </div>
-        //   <ImageCarousel images={images} />
-        //   </div>
-        // </div>
 
     )
 }
