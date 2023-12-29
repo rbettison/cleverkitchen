@@ -7,7 +7,7 @@ export type CartContextType = {
     addItemToCart: (item: CartItem) => void;
     cartTotal: number;
     removeItemFromCart: (item: CartItem) => void;
-    alterItemQuantity: (item: CartItem) => void;
+    alterItemQuantity: (item: CartItem, addToCurrentValue: boolean) => void;
 };
 const CartContext = createContext<CartContextType>({cartItems: [], 
                         addItemToCart: () => {}, 
@@ -18,9 +18,17 @@ export type CartItem = {
     title: string,
     handle: string, 
     variantId: string,
+    variantTitle: string,
     image: string,
     price: number,
     quantity: number
+}
+
+export type CartItemVariant = {
+    node: {
+        title: string,
+        id: string
+    }
 }
 
 
@@ -54,13 +62,13 @@ export const CartProvider = ({ children } : {
         let isItemInCart = false;
 
         cartItems.forEach((currentItem) => {
-            if(currentItem.handle === item.handle) {
+            if(currentItem.handle === item.handle && item.variantId === currentItem.variantId) {
                 isItemInCart = true;
             }
         })
 
         if(isItemInCart) {
-
+            alterItemQuantity(item, true)
         } else {
             let newCartItems: CartItem[] = [...(cartItems), item];
             setCartItems(newCartItems);
@@ -69,18 +77,18 @@ export const CartProvider = ({ children } : {
 
     const removeItemFromCart = (cartItem: CartItem) => {
 
-        let newCartItems = cartItems.filter((item) => cartItem.handle != item.handle);
+        let newCartItems = cartItems.filter((item) => cartItem.variantId != item.variantId);
         setCartItems(newCartItems);
     }
 
-    const alterItemQuantity = (cartItem: CartItem) => {
+    const alterItemQuantity = (cartItem: CartItem, addToCurrentValue: boolean) => {
 
         if(cartItem.quantity === 0) {
             removeItemFromCart(cartItem)
         } else {
             let newCartItems = cartItems.map((item) => {
-                if(item.handle === cartItem.handle) {
-                    item.quantity = cartItem.quantity;
+                if(item.handle === cartItem.handle && item.variantId === cartItem.variantId) {
+                    addToCurrentValue? item.quantity = Number(item.quantity) + Number(cartItem.quantity) : item.quantity = cartItem.quantity;
                 }
                 return item;
             })

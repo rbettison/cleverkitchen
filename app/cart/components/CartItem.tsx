@@ -31,6 +31,7 @@ export default function CartItem({item}: {item: CartItem}) {
                     className="cols-start-1 col-span-1 row-start-1 row-span-4"/>
                 <Link href={`/products/${item.handle}`} className="cols-start-2 col-span-1 row-start-1 row-span-4 p-3">
                     <p>Product: {item.title}</p>
+                    <p>Variant: {item.variantTitle}</p>
                     <p>CartItem: {item.handle}</p>
                     <p>price: {item.price}</p>
                 </Link>

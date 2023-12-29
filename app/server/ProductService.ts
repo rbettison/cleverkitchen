@@ -27,16 +27,18 @@ let query = `{
 let productHandleQuery = `query SingleProduct($handle: String!) {
   product(handle : $handle) {
     title,
+    description,
     priceRange {
       maxVariantPrice {
         amount, 
         currencyCode
       }
     },
-    variants(first: 1) {
+    variants(first: 5) {
       edges {
         node {
-          id
+          id,
+          title
         }
       }
     },

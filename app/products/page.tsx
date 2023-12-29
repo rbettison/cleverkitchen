@@ -1,9 +1,9 @@
 import ProductCard from "../components/ProductCard";
 import {getProducts} from "../server/ProductService"
+import Link from "next/link";
 
 export default async function Products() {
      let products = await getProducts(8);
-    
 
     return (
 
