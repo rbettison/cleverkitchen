@@ -2,7 +2,7 @@ import AddToCart from "@/app/cart/components/AddToCart";
 import {getProductByHandle, getProducts} from "@/app/server/ProductService";
 import ProductCard from "@/app/components/ProductCard";
 import ButtonWithLink from "@/app/cart/components/ButtonWithLink";
-import Link from "next/link";
+import ImageCarousel from "@/app/components/ImageCarousel";
 
 
 export default async function Product({params} : 
@@ -18,29 +18,21 @@ export default async function Product({params} :
             <div>
                 <div className={"container p-8 flex justify-around flex-col md:flex-row"} id={'product pic and description row'}>
                     <div className={""}>
-
-                        <ProductCard key={params.id} title={product.data.product.title}
-                                     handle={params.id}
-                                     image={product.data.product.images.edges[0] != null ?
-                                         product.data.product.images.edges[0].node.url : ''}
-                                     price={product.data.product.priceRange.maxVariantPrice.amount}
-                                     currencyCode={product.data.product.priceRange.maxVariantPrice.currencyCode} />
+                        <ImageCarousel images={images} />
                     </div>
                     <div className={"flex flex-col"}>
                         <div>{product.data.product.title}</div>
-                        <div>description</div>
-                        <div>
-                            <p>variant:</p>
-                            <select>
-                                {variants.map(index => <option key={index} value={index}>{index.node.id}</option>)}
-                            </select>
-                        </div>
-                        <AddToCart product={{ title: product.data.product.title,
+                        <div>{product.data.product.description}</div>
+                        <AddToCart
+                            product={{ title: product.data.product.title,
                             handle: params.id,
-                            variantId: product.data.product.variants.edges[0].node.id,
+                            variantId: variants[0].id,
+                            variantTitle: variants[0].title,
                             image: product.data.product.images.edges[0]?.node.url || "",
                             price: product.data.product.priceRange.maxVariantPrice.amount,
-                            quantity: 1}}/>
+                            quantity: 1}}
+                            variants={variants}
+                        />
                         <ButtonWithLink btnLink={'/cart'} >
                             Go To Cart
                         </ButtonWithLink>
