@@ -21,7 +21,7 @@ export default function CartItem({item}: {item: CartItem}) {
 
         setQuantity(quantityChange)
         item.quantity = quantityChange;
-        alterItemQuantity(item);
+        alterItemQuantity(item, false);
     }
 
     return(

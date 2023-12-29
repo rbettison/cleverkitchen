@@ -10,7 +10,7 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
     const maxQuantity = Array.apply(null, Array(15)).map(function (y, i) { return i + 1; });
     const [quantity, setQuantity] = useState(1);
 
-    const handleVariantChange = (e) => {
+    const handleVariantChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setVariantId(e.target.value);
         let filtered = variants.filter(variant => {
             return variant.node.id === e.target.value
@@ -18,8 +18,8 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
         setVariantTitle(filtered[0].node.title)
     };
 
-    const handleQuantityChange = (e) => {
-        setQuantity(e.target.value)
+    const handleQuantityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setQuantity(Number(e.target.value))
     }
 
     const addToCart = () => {
