@@ -30,6 +30,7 @@ export default async function Product({params} :
                             variantTitle: variants[0].title,
                             image: product.data.product.images.edges[0]?.node.url || "",
                             price: product.data.product.priceRange.maxVariantPrice.amount,
+                            description: product.data.product.description,
                             quantity: 1}}
                             variants={variants}
                         />

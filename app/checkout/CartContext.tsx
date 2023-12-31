@@ -6,12 +6,14 @@ export type CartContextType = {
     cartItems: CartItem[];
     addItemToCart: (item: CartItem) => void;
     cartTotal: number;
+    numberItems: number;
     removeItemFromCart: (item: CartItem) => void;
     alterItemQuantity: (item: CartItem, addToCurrentValue: boolean) => void;
 };
 const CartContext = createContext<CartContextType>({cartItems: [], 
                         addItemToCart: () => {}, 
                         cartTotal: 0, 
+                        numberItems: 0,
                         removeItemFromCart: () => {},
                         alterItemQuantity: () => {}});
 export type CartItem = {
@@ -21,6 +23,7 @@ export type CartItem = {
     variantTitle: string,
     image: string,
     price: number,
+    description: string,
     quantity: number
 }
 
@@ -47,14 +50,18 @@ export const CartProvider = ({ children } : {
     
     const[cartItems, setCartItems] = useState<CartItem[]>(getLocalCartData());
     const [cartTotal, setCartTotal] = useState<number>(0);
+    const [numberItems, setNumberItems] = useState<number>(0);
 
     
     useEffect(() => {
         let total: number = 0;
+        let itemTotal: number = 0;
         cartItems.forEach((cartItem) => {
             total = Number(total) + (Number(cartItem.quantity) * Number(cartItem.price));
+            itemTotal = itemTotal + cartItem.quantity;
         })
         setCartTotal(total);
+        setNumberItems(itemTotal)
         localStorage.setItem("cartItems", JSON.stringify(cartItems))
     }, [cartItems])
 
@@ -98,7 +105,7 @@ export const CartProvider = ({ children } : {
     }
 
     return (
-        <CartContext.Provider value={{cartItems, addItemToCart, cartTotal, removeItemFromCart, alterItemQuantity}}>
+        <CartContext.Provider value={{cartItems, addItemToCart, cartTotal, numberItems, removeItemFromCart, alterItemQuantity}}>
             {children}
         </CartContext.Provider>
     )

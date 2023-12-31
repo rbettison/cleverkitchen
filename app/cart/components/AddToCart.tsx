@@ -30,7 +30,8 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
             variantTitle: variantTitle,
             image: product.image,
             price: product.price,
-            quantity: quantity
+            quantity: quantity,
+            description: product.description
         });
     }
 
