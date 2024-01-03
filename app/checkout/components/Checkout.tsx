@@ -23,7 +23,7 @@ export default function Checkout() {
         })
         let json = await resp.json();
         console.log(JSON.stringify(json));
-        window.location.href = json.data.checkoutCreate.checkout.webUrl;
+        window.location.href = json.data.checkoutCreate.checkout.webUrl.replace("cleverkitchenstore.myshopify.com", "checkout.thecleverkitchen.co.uk");
     }
 
     return (
