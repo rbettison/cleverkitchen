@@ -28,6 +28,7 @@ let productHandleQuery = `query SingleProduct($handle: String!) {
   product(handle : $handle) {
     title,
     description,
+    descriptionHtml,
     priceRange {
       maxVariantPrice {
         amount, 
