@@ -3,6 +3,7 @@ import {getProductByHandle, getProducts} from "@/app/server/ProductService";
 import ProductCard from "@/app/components/ProductCard";
 import ButtonWithLink from "@/app/cart/components/ButtonWithLink";
 import ImageCarousel from "@/app/components/ImageCarousel";
+import styles from "./page.module.css"
 
 
 export default async function Product({params} : 
@@ -16,13 +17,13 @@ export default async function Product({params} :
     return (
         <>
             <div>
-                <div className={"container p-8 flex justify-around flex-col md:flex-row"} id={'product pic and description row'}>
-                    <div className={""}>
+                <div className={"container p-8 flex justify-around flex-col gap-8 md:flex-row"} id={'product pic and description row'}>
+                    <div className={"w-1/2"}>
                         <ImageCarousel images={images} />
                     </div>
-                    <div className={"flex flex-col"}>
-                        <div>{product.data.product.title}</div>
-                        <div>{product.data.product.description}</div>
+                    <div className={"flex flex-col w-1/2"}>
+                        <div className={"text-4xl pb-3"}>{product.data.product.title}</div>
+                        <div id={styles.id_description} dangerouslySetInnerHTML={{__html: product.data.product.descriptionHtml}}></div>
                         <AddToCart
                             product={{ title: product.data.product.title,
                             handle: params.id,
@@ -34,7 +35,7 @@ export default async function Product({params} :
                             quantity: 1}}
                             variants={variants}
                         />
-                        <ButtonWithLink btnLink={'/cart'} >
+                        <ButtonWithLink btnLink={'/cart'}>
                             Go To Cart
                         </ButtonWithLink>
                     </div>
