@@ -35,16 +35,16 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
     }
 
     return (
-        <div className="mt-6">
+        <div className="">
             <div>
-                <p>quantity:</p>
+                <p>Quantity:</p>
                 <select onChange={handleQuantityChange} value={quantity}>
                     {maxQuantity.map(index => <option key={index} value={index}>{index}</option>)}
                 </select>
             </div>
             {variants.length > 1 && <div>
-                <p>variant:</p>
-                <select value={variantId} onChange={handleVariantChange}>
+                <p>Variant:</p>
+                <select value={variantId} onChange={handleVariantChange} className={"mb-6"}>
                     {variants.map(variant => <option key={variant.node.id} value={variant.node.id}>{variant.node.title}</option>)}
                 </select>
             </div>}
