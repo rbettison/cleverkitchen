@@ -16,7 +16,7 @@ export default async function Product({params} :
     return (
         <>
             <div>
-                <div className={"container p-8 flex justify-around flex-col md:flex-row"} id={'product pic and description row'}>
+                <div className={"container pt-24 p-8 flex justify-around flex-col md:flex-row"} id={'product pic and description row'}>
                     <div className={""}>
                         <ImageCarousel images={images} />
                     </div>

@@ -1,13 +1,21 @@
 'use client'
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import CartContext from "../checkout/CartContext"
+import { animate } from "framer-motion"
 
 export default function CartIcon() {
 
     const { numberItems } = useContext(CartContext)
 
+    useEffect(() => {
+        console.log('here');
+        const cart = document.getElementById("cartIcon");
+        animate(cart, { scale: [1.5, 1] }, { type: "spring" })
+
+    }, [numberItems])
+
     return (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center" id="cartIcon">
             <div className="relative py-2">
                 <div className="t-0 absolute left-6">
                 <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">{numberItems}</p>

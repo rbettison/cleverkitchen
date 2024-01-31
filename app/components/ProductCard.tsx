@@ -1,3 +1,5 @@
+'use client'
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 const currencies = {
@@ -8,7 +10,12 @@ const currencies = {
 export default function ProductCard(props: {handle: string, title: string, image: string, price: number, currencyCode: string}) {
     let imageUrl = props.image;
     return (
-        <Link href={`/products/${props.handle}`} className="box-border overflow-hidden shadow-sm hover:shadow-lg rounded-lg border border-border-100">
+        <motion.a 
+            initial={{opacity: 0, x: -100}}
+            whileInView={{opacity: 1, x:0}}
+            viewport={{ once: true , amount: 0.5}}
+            
+            href={`/products/${props.handle}`} className="box-border overflow-hidden shadow-sm hover:shadow-lg rounded-lg border border-border-100">
                 <div className="bg-white h-full flex flex-col ">
                     
                     <img src={imageUrl} className="py-4 w-full h-40 min-h-32 object-cover"/>
@@ -19,7 +26,7 @@ export default function ProductCard(props: {handle: string, title: string, image
                     
                 </div>
             
-        </Link>
+        </motion.a>
 
     )
 }

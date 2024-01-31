@@ -10,7 +10,7 @@ export default async function Products() {
         <div className="h-auto sm:h-screen container col-span-5 bg-fixed">
 
                 
-                <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-5 w-full">
+                <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-5 w-full mt-24">
                     {products.data.products.edges.map((edge: any) => <ProductCard key={edge.node.handle} 
                                                                                     title={edge.node.title}
                                                                                   handle={edge.node.handle}

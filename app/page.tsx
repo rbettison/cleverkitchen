@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getProducts } from "./server/ProductService";
 import ProductCard from "./components/ProductCard";
+import HowTo from "./components/HowTo";
 
 
 export default async function Home() {
@@ -33,15 +34,7 @@ export default async function Home() {
 
     </div>
 
-    <div className="flex sm:flex-row flex-col w-4/5 justify-evenly gap-8 m-auto text-center sm:text-left">
-          <div>
-            <p className="font-light text-[36px]">HOW TO USE OUR <span className="font-bold">CLEVER KITCHEN</span> GADGETS</p>
-            <p className="font-light text-[24px]">Whether you&apos;re a novice or a seasoned chef, our tiktok video tutorials are here to elevate your cooking game</p>                                                                        
-          </div>
-          <div className="sm:h-[300px] h-[200px] w-[300px] sm:w-[700px] border border-borderVideo-100 rounded-lg bg-video-image bg-cover">
-                                                                                  
-          </div>
-    </div>
+    <HowTo />
 
     <div className="flex sm:flex-row flex-col justify-center gap-12 my-24">
       <div className="flex flex-col items-center">
