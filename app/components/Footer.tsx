@@ -4,7 +4,7 @@ export default function Footer() {
     return(
         <>
         <div className="sm:h-56 h-0"></div>
-        <div className="p-8 h-56 text-white bg-darkGrey-100 block sm:absolute bottom-0 left-0 w-screen">
+        <div className="p-8 h-56 text-white bg-darkGrey-100 block absolute bottom-0 left-0 w-screen">
             <div className="flex flex-col items-center sm:flex-row gap-8 sm:gap-0 justify-evenly sm:justify-between border-b border-white pb-12 text-center h-4/5">
                 <div className="sm:text-left flex flex-col text-4xl">
                 <svg width="171" height="75" viewBox="0 0 171 75" fill="none" xmlns="http://www.w3.org/2000/svg">

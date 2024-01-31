@@ -10,7 +10,7 @@ export default async function Home() {
   return (
     <>
     
-    <div className="w-full gap-8 mb-48 sm:h-screen sm:grid flex flex-col items-center sm:text-left text-center grid-cols-4 grid-rows-5 justify-between">
+    <div className="mt-40 sm:mt-0 w-full gap-8 mb-48 sm:h-screen sm:grid flex flex-col items-center sm:text-left text-center grid-cols-4 grid-rows-5 justify-between">
       <p className="sm:text-[84px] text-4xl leading-tight font-light sm:pl-24 row-start-2 col-span-2">Effortless cooking, <span className="whitespace-nowrap">with <span className="font-bold">clever kitchen</span></span> solutions</p>
       <div className='sm:top-0 sm:left-0 top-0 left-0 sm:absolute sm:min-w-full sm:h-screen w-screen h-[200px] bg-hero-pattern bg-contain bg-no-repeat sm:bg-cover -z-10 overflow-auto'>
       </div>

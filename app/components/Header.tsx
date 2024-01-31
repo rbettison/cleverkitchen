@@ -9,7 +9,7 @@ export default function Header() {
         <>
             <div 
                 
-                className='w-1/2 rounded-full bg-slate-50 bg-opacity-80 fixed top-2 left-0 right-0 m-auto col-span-full flex-col text-center items-center sm:flex-row sm:justify-around flex md:justify-around pt-2 pb-2'>
+                className='w-1/2 sm:rounded-full rounded-lg bg-slate-50 bg-opacity-80 fixed top-2 left-0 right-0 m-auto col-span-full flex-col text-center items-center sm:flex-row sm:justify-around flex md:justify-around pt-2 pb-2'>
                 <motion.a 
                     whileTap={{
                         scale: 0.9

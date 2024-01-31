@@ -22,7 +22,8 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
         setQuantity(Number(e.target.value))
     }
 
-    const addToCart = () => {
+    const addToCart = (event: React.MouseEvent<HTMLElement>) => {
+        event.preventDefault();
         addItemToCart({
             title: product.title,
             handle: product.handle,
