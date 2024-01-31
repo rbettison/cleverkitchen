@@ -9,8 +9,10 @@ export default function CartIcon() {
 
     useEffect(() => {
         console.log('here');
-        const cart = document.getElementById("cartIcon");
-        animate(cart, { scale: [1.5, 1] }, { type: "spring" })
+        const cart :HTMLElement|null = document.getElementById("cartIcon");
+        if(cart != null) {
+            animate(cart, { scale: [1.5, 1] }, { type: "spring" })
+        }
 
     }, [numberItems])
 
