@@ -4,6 +4,7 @@ import { CartProvider } from './checkout/CartContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Analytics } from '@vercel/analytics/react';
+import ToastContainer from "@/app/cart/components/ToastContainer";
 
 export const metadata: Metadata = {
   title: 'The Clever Kitchen',
@@ -17,8 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <CartProvider>
-    <html className="relative bg-background-100 font-light" lang="en">
+
+        <html className="relative bg-background-100 font-light" lang="en">
         <body className="w-full container m-auto text-darkGrey-100 box-border min-h-screen">
+        <ToastContainer />
         <Analytics />
         <Header />
           {children}

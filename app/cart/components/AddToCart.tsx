@@ -1,6 +1,7 @@
 "use client"
 import CartContext, {CartItem, CartItemVariant} from "@/app/checkout/CartContext";
 import { useContext, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function AddToCart({product, variants}: {product: CartItem, variants: CartItemVariant[]}) {
 
@@ -33,6 +34,9 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
             price: product.price,
             quantity: quantity,
             description: product.description
+        });
+        toast.success(`added to cart!`, {
+            // Optional customization
         });
     }
 
