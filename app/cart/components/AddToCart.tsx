@@ -40,7 +40,7 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
         <div className="">
             <div>
                 <p>Quantity:</p>
-                <select onChange={handleQuantityChange} value={quantity}>
+                <select className={"mb-6"} onChange={handleQuantityChange} value={quantity}>
                     {maxQuantity.map(index => <option key={index} value={index}>{index}</option>)}
                 </select>
             </div>
