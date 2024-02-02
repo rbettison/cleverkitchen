@@ -20,24 +20,27 @@ export default async function Product({params} :
                 <div className={"container mt-40 sm:mt-24 mb-40 p-8 flex justify-around flex-col gap-8 md:flex-row"} id={'product pic and description row'}>
                     <div className={"md:w-1/2"}>
                         <ImageCarousel images={images} />
+                        <div className={"pt-5"}>
+                            <AddToCart
+                                product={{ title: product.data.product.title,
+                                    handle: params.id,
+                                    variantId: variants[0].id,
+                                    variantTitle: variants[0].title,
+                                    image: product.data.product.images.edges[0]?.node.url || "",
+                                    price: product.data.product.priceRange.maxVariantPrice.amount,
+                                    description: product.data.product.description,
+                                    quantity: 1}}
+                                variants={variants}
+                            />
+                            <ButtonWithLink btnLink={'/cart'}>
+                                Go To Cart
+                            </ButtonWithLink>
+                        </div>
                     </div>
                     <div className={"flex flex-col md:w-1/2"}>
                         <div className={"text-4xl pb-3"}>{product.data.product.title}</div>
                         <div id={styles.id_description} dangerouslySetInnerHTML={{__html: product.data.product.descriptionHtml}}></div>
-                        <AddToCart
-                            product={{ title: product.data.product.title,
-                            handle: params.id,
-                            variantId: variants[0].id,
-                            variantTitle: variants[0].title,
-                            image: product.data.product.images.edges[0]?.node.url || "",
-                            price: product.data.product.priceRange.maxVariantPrice.amount,
-                            description: product.data.product.description,
-                            quantity: 1}}
-                            variants={variants}
-                        />
-                        <ButtonWithLink btnLink={'/cart'}>
-                            Go To Cart
-                        </ButtonWithLink>
+
                     </div>
                 </div>
                 <p className="text-center text-2xl text-black">Related Products</p>
