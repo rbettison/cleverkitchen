@@ -53,7 +53,7 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
                 {variants.length > 1 && <div className="my-4 flex flex-col items-center">
                     <p>Variant</p>
                     <select value={variantId} onChange={handleVariantChange} className="mb-6 w-24 rounded-xl">
-                        {variants.map(variant => <option key={variant.node.id} value={variant.node.id}>{variant.node.title}</option>)}
+                        {variants.map(variant => <option key={variant.node.id} value={variant.node.id} disabled={!variant.node.availableForSale}>{variant.node.title}</option>)}
                     </select>
                 </div>}
             </div>

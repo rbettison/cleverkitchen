@@ -39,7 +39,8 @@ let productHandleQuery = `query SingleProduct($handle: String!) {
       edges {
         node {
           id,
-          title
+          title,
+          availableForSale
         }
       }
     },

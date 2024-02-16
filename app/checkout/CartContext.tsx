@@ -31,6 +31,7 @@ export type CartItemVariant = {
     node: {
         title: string,
         id: string
+        availableForSale: boolean
     }
 }
 
