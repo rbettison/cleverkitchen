@@ -1,7 +1,6 @@
 import AddToCart from "@/app/cart/components/AddToCart";
 import {getProductByHandle, getProducts} from "@/app/server/ProductService";
 import ProductCard from "@/app/components/ProductCard";
-import ButtonWithLink from "@/app/cart/components/ButtonWithLink";
 import ImageCarousel from "@/app/components/ImageCarousel";
 import styles from "./page.module.css"
 
@@ -17,7 +16,7 @@ export default async function Product({params} :
     return (
         <>
             <div className="mb-52">
-                <div className={"container mt-40 sm:mt-24 mb-40 p-8 flex justify-around flex-col gap-8 md:flex-row"} id={'product pic and description row'}>
+                <div className={"container mt-40 sm:mt-24 mb-40 p-8 flex justify-around align-middle flex-col gap-8 md:flex-row"} id={'product pic and description row'}>
                     <div className={"md:w-1/2"}>
                         <ImageCarousel images={images} />
                         <div className={"pt-5"}>
@@ -32,9 +31,6 @@ export default async function Product({params} :
                                     quantity: 1}}
                                 variants={variants}
                             />
-                            <ButtonWithLink btnLink={'/cart'}>
-                                Go To Cart
-                            </ButtonWithLink>
                         </div>
                     </div>
                     <div className={"flex flex-col md:w-1/2"}>

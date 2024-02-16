@@ -1,14 +1,12 @@
 "use client"
 import CartContext, {CartItem, CartItemVariant} from "@/app/checkout/CartContext";
 import { useContext, useState } from "react";
-import toast from "react-hot-toast";
 
 export default function AddToCart({product, variants}: {product: CartItem, variants: CartItemVariant[]}) {
 
     const { addItemToCart } = useContext(CartContext);
     const [variantId, setVariantId] = useState(variants[0].node.id);
     const [variantTitle, setVariantTitle] = useState(variants[0].node.title);
-    const maxQuantity = Array.apply(null, Array(15)).map(function (y, i) { return i + 1; });
     const [quantity, setQuantity] = useState(1);
 
     const handleVariantChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -19,9 +17,13 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
         setVariantTitle(filtered[0].node.title)
     };
 
-    const handleQuantityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setQuantity(Number(e.target.value))
-    }
+    const incrementQuantity = () => {
+        setQuantity(prevQuantity => prevQuantity + 1);
+    };
+
+    const decrementQuantity = () => {
+        setQuantity(prevQuantity => prevQuantity > 1 ? prevQuantity - 1 : 1);
+    };
 
     const addToCart = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
@@ -38,20 +40,30 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
     }
 
     return (
-        <div className="">
-            <div>
-                <p>Quantity:</p>
-                <select className={"mb-6"} onChange={handleQuantityChange} value={quantity}>
-                    {maxQuantity.map(index => <option key={index} value={index}>{index}</option>)}
-                </select>
+        <div className="flex flex-col items-center justify-between">
+            <div className="flex-col sm:flex-row w-full justify-around items-start">
+                <div className="flex flex-col items-center my-2">
+                    <p className={"items-center"}>Quantity</p>
+                    <div className="flex items-center">
+                        <button onClick={decrementQuantity} className="px-3 py-1 bg-darkGrey-100 hover:bg-black rounded-lg text-white">-</button>
+                        <span className="mx-3">{quantity}</span>
+                        <button onClick={incrementQuantity} className="px-3 py-1 bg-darkGrey-100 hover:bg-black rounded-lg text-white">+</button>
+                    </div>
+                </div>
+                {variants.length > 1 && <div className="my-4 flex flex-col items-center">
+                    <p>Variant</p>
+                    <select value={variantId} onChange={handleVariantChange} className="mb-6 w-24 rounded-xl">
+                        {variants.map(variant => <option key={variant.node.id} value={variant.node.id}>{variant.node.title}</option>)}
+                    </select>
+                </div>}
             </div>
-            {variants.length > 1 && <div>
-                <p>Variant:</p>
-                <select value={variantId} onChange={handleVariantChange} className={"mb-6"}>
-                    {variants.map(variant => <option key={variant.node.id} value={variant.node.id}>{variant.node.title}</option>)}
-                </select>
-            </div>}
-            <a href="#" className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700" onClick={addToCart}>Add to Cart</a>
+            <div className="flex flex-row justify-center">
+                <a href="#" className="flex items-center text-center justify-center rounded-xl border border-transparent bg-darkGrey-100 hover:bg-black px-6 mx-6 py-3 text-white text-xl shadow-sm" onClick={addToCart}>Add to Cart</a>
+                <a href='/cart' className="flex items-center text-center justify-center rounded-xl border border-transparent bg-darkGrey-100 hover:bg-black px-6 mx-6 py-3 text-xl text-white shadow-sm">Go to Cart</a>
+            </div>
         </div>
+
+
+
     )
 }
