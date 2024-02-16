@@ -42,7 +42,7 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
     return (
         <div className="flex flex-col items-center justify-between">
             <div className="flex-col sm:flex-row w-full justify-around items-start">
-                <div className="flex flex-col items-center my-2">
+                <div className="flex flex-col items-center my-4">
                     <p className={"items-center"}>Quantity</p>
                     <div className="flex items-center">
                         <button onClick={decrementQuantity} className="px-3 py-1 bg-darkGrey-100 hover:bg-black rounded-lg text-white">-</button>
