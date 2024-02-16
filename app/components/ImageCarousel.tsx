@@ -12,7 +12,7 @@ export default function ImageCarousel(props: {images: string[]}) {
     return (
         <>
             <div className="flex flex-col">
-                <img src={mainImage}  className="w-full h-96 min-h-32 object-cover"/>
+                <img src={mainImage}  className="w-full object-cover"/>
                 <div className="bg-white h-full flex flex-row">
                 {props.images.map((image) =>    <button key={image} value={image} onClick={()=>handleImageClick(image)}>
                                                     <img src={image} className="w-full h-40 min-h-32 object-cover"/>
