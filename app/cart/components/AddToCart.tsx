@@ -70,7 +70,7 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
     return (
         <div className="flex flex-col items-center justify-between">
             <div className="flex-col sm:flex-row w-full justify-around items-start">
-                {(variants.length > 1 && !allOutOfStock) && <div className="flex flex-col items-center my-4">
+                {(!allOutOfStock) && <div className="flex flex-col items-center my-4">
                     <p className={"items-center"}>Quantity</p>
                     <div className="flex items-center">
                         <button onClick={decrementQuantity}
@@ -95,7 +95,7 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
                     </div>
                 </div>}
             </div>
-            {(variants.length > 1 && !allOutOfStock) && <div className="flex flex-row justify-center">
+            {(!allOutOfStock) && <div className="flex flex-row justify-center">
                 <a href="#"
                    className="flex items-center text-center justify-center rounded-xl border border-transparent bg-darkGrey-100 hover:bg-black px-6 mx-6 py-3 text-white text-md sm:text-xl shadow-sm"
                    onClick={addToCart}>Add to Cart</a>
