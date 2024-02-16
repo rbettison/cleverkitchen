@@ -35,9 +35,6 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
             quantity: quantity,
             description: product.description
         });
-        toast.success(`added to cart!`, {
-            // Optional customization
-        });
     }
 
     return (
