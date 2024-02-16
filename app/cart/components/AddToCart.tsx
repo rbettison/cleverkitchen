@@ -58,8 +58,8 @@ export default function AddToCart({product, variants}: {product: CartItem, varia
                 </div>}
             </div>
             <div className="flex flex-row justify-center">
-                <a href="#" className="flex items-center text-center justify-center rounded-xl border border-transparent bg-darkGrey-100 hover:bg-black px-6 mx-6 py-3 text-white text-xl shadow-sm" onClick={addToCart}>Add to Cart</a>
-                <a href='/cart' className="flex items-center text-center justify-center rounded-xl border border-transparent bg-darkGrey-100 hover:bg-black px-6 mx-6 py-3 text-xl text-white shadow-sm">Go to Cart</a>
+                <a href="#" className="flex items-center text-center justify-center rounded-xl border border-transparent bg-darkGrey-100 hover:bg-black px-6 mx-6 py-3 text-white text-md sm:text-xl shadow-sm" onClick={addToCart}>Add to Cart</a>
+                <a href='/cart' className="flex items-center text-center justify-center rounded-xl border border-transparent bg-darkGrey-100 hover:bg-black px-6 mx-6 py-3 text-md sm:text-xl text-white shadow-sm">Go to Cart</a>
             </div>
         </div>
 
