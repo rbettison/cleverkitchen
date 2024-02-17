@@ -22,8 +22,8 @@ export default function OrderSummary() {
         <>  
             {cartTotal > 0 ? <div className="text-left sm:text-center p-10">
             <p className="text-2xl">Order Summary</p>
-            <p>Tax: <span className="font-light text-md text-price-100">{shippingPriceMessage}</span></p>
-            <p>Shipping: <span className="font-light text-md text-price-100">£1.99</span></p>
+            <p>Tax: <span className="font-light text-md text-price-100">FREE</span></p>
+            <p>Shipping: <span className="font-light text-md text-price-100">{shippingPriceMessage}</span></p>
                 <p>Total: <span className="font-light text-[24px] text-price-100">£{(parseFloat(cartTotal.toFixed(2)) + shippingPriceToUK).toFixed(2)}</span></p>
                 {cartTotal < amountToSpendToQualifyForFreeShipping &&
                     <p className="text-md text-red-500 italic">Spend just £{(amountToSpendToQualifyForFreeShipping - cartTotal).toFixed(2)} more to qualify for free shipping</p>
