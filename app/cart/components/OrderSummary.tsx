@@ -12,9 +12,9 @@ export default function OrderSummary() {
     let shippingPriceMessage: string;
 
     if (cartTotal >= amountToSpendToQualifyForFreeShipping) {
-        shippingPriceMessage = "Shipping: FREE";
+        shippingPriceMessage = "FREE";
     } else {
-        shippingPriceMessage = `Shipping: £${shippingPriceToUK.toFixed(2)}`;
+        shippingPriceMessage = `£${shippingPriceToUK.toFixed(2)}`;
     }
 
 
