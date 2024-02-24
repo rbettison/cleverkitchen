@@ -7,7 +7,7 @@ export default async function Products() {
 
     return (
 
-        <div className="h-auto sm:h-screen container col-span-5 bg-fixed mt-40 sm:mt-0">
+        <div className="container col-span-5 bg-fixed mt-40 mb-64 sm:mb-64 sm:mt-0">
 
                 
                 <div className="px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-5 w-full mt-24">

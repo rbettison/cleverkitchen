@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { getProducts } from "./server/ProductService";
 import ProductCard from "./components/ProductCard";
 import HowTo from "./components/HowTo";
@@ -16,7 +15,7 @@ export default async function Home() {
       </div>
       <p className="sm:text-[24px] text-xl font-light row-start-4 col-span-2 sm:pl-24">From time-saving marvels to space-efficient solutions, revolutionize the way you cook with clever kitchen gadgets.</p>
     </div>
-    <div className="sm:h-screen h-auto flex flex-col items-center text-center">
+    <div className="flex flex-col items-center text-center">
       <div className="font-light text-[36px]">
         Not sure what you are looking for?
       </div>

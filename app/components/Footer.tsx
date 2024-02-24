@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Footer() {
     return(
         <>
-        <div className="sm:h-0 h-48"></div>
+        {/* <div className="sm:h-0 h-48"></div> */}
         <div className="p-8 h-56 text-white bg-darkGrey-100 block absolute bottom-0 left-0 w-screen">
             <div className="flex flex-col items-center sm:flex-row gap-8 sm:gap-0 justify-evenly sm:justify-between border-b border-white pb-12 text-center h-4/5">
                 <div className="sm:text-left flex flex-col text-4xl">

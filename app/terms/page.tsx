@@ -1,6 +1,6 @@
 export default function Terms() {
     return (
-        <>
+        <div className="mt-40 mb-60">
         <h1 className="text-4xl">TERMS OF SERVICE</h1>
 
 <h2 className="text-2xl">OVERVIEW</h2>
@@ -203,6 +203,6 @@ SECTION 18 - GOVERNING LAW
 These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed in accordance
 with the laws of United Kingdom.
 
-</>
+</div>
     )
 }

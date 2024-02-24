@@ -1,6 +1,7 @@
 export default function Privacy() {
     return (
-        <>
+        
+        <div className="mt-40 mb-60">
         <h1 className="text-4xl">Bettison Bros Ltd. Privacy Policy.</h1>
 <p>Last updated: 03.01.2024</p>
 This Privacy Policy describes how Bettison Bros Ltd. (the &quot;Site&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) collects, uses, and discloses your personal information
@@ -168,6 +169,6 @@ information or to opt out of the processing of your personal information for pur
 applicable privacy laws. Please note that if you visit our Site with the Global Privacy Control opt-out preference signal enabled, depending on
 where you are, we will automatically treat this as a request to opt-out of the &quot;sale&quot; or &quot;sharing&quot; of information for the device and browser that
 you use to visit the Site.
-</>
+</div>
     )
 }
