@@ -1,15 +1,24 @@
 import AddToCart from "@/app/cart/components/AddToCart";
-import {getProductByHandle, getProducts} from "@/app/server/ProductService";
+import {
+    extractProductReviewSummaryFromJson, extractReviewsFromJson,
+    getProductByHandle,
+    getProducts,
+    getReviewJson
+} from "@/app/server/ProductService";
 import ProductCard from "@/app/components/ProductCard";
 import ImageCarousel from "@/app/components/ImageCarousel";
 import styles from "./page.module.css"
-
+import {ProductReviewSummary} from "@/app/types/productReviewSummary";
+import {Review} from "@/app/types/review";
 
 export default async function Product({params} : 
     { params: { id: string } }) {
 
     let products = await getProducts(2);
     let product = await getProductByHandle(params.id);
+    let reviewJson = await getReviewJson(product.data.product.metafield.value)
+    let productReviewSummary: ProductReviewSummary = extractProductReviewSummaryFromJson(await reviewJson);
+    let reviews: Review[] = extractReviewsFromJson(await reviewJson);
     let variants = product.data.product.variants.edges;
     let images : string[] = product.data.product.images.edges.map((edge: {node: { url : string}}) => edge.node.url);
 
@@ -37,6 +46,20 @@ export default async function Product({params} :
                         <div className={"text-4xl pb-3"}>{product.data.product.title}</div>
                         <div id={styles.id_description} dangerouslySetInnerHTML={{__html: product.data.product.descriptionHtml}}></div>
 
+                    </div>
+                    <div className={"flex flex-col md:w-1/2"}>
+                        <h2 className="text-xl font-semibold mb-4">Customer Reviews</h2>
+                        <p>Average Rating: {productReviewSummary?.evarageStar} ({productReviewSummary?.totalNum} reviews)</p>
+                        <ol>
+                            {reviews.map((r) => (
+                                <li key={r.evaluationId} className={"list-disc space-y-2"}>
+                                    <p>{r.buyerTranslationFeedback}</p>
+
+                                    {r.images && r.images.length > 0 && <ImageCarousel images={r.images} />}
+                                    <div className="text-sm text-gray-600">Reviewed on {r.evalDate}</div>
+                                </li>
+                            ))}
+                        </ol>
                     </div>
                 </div>
                 <p className="text-center text-2xl text-black">Related Products</p>

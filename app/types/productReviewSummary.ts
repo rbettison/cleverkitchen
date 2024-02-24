@@ -1,0 +1,21 @@
+export interface ProductReviewSummary {
+        evarageStar: number,
+        evarageStarRage: number,
+        fiveStarNum: number,
+        fiveStarRate: number,
+        fourStarNum: number,
+        fourStarRate: number,
+        negativeNum: number,
+        negativeRate: number,
+        neutralNum: number,
+        neutralRate: number,
+        oneStarNum: number,
+        oneStarRate: number,
+        positiveNum: number,
+        positiveRate: number,
+        threeStarNum: number,
+        threeStarRate: number,
+        totalNum: number,
+        twoStarNum: number,
+        twoStarRate: number
+}
