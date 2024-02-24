@@ -16,9 +16,16 @@ export default async function Product({params} :
 
     let products = await getProducts(2);
     let product = await getProductByHandle(params.id);
-    let reviewJson = await getReviewJson(product.data.product.metafield.value)
-    let productReviewSummary: ProductReviewSummary = extractProductReviewSummaryFromJson(await reviewJson);
-    let reviews: Review[] = extractReviewsFromJson(await reviewJson);
+    let reviewJson;
+    let productReviewSummary: ProductReviewSummary;
+    let reviews: Review[] = [];
+    const hasAliExpressId = product.data.product.metafield ? !!product.data.product.metafield['value'] : false;
+
+    if (hasAliExpressId) {
+        reviewJson = await getReviewJson(product.data.product.metafield.value)
+        productReviewSummary = extractProductReviewSummaryFromJson(await reviewJson);
+        reviews = extractReviewsFromJson(await reviewJson);
+    }
     let variants = product.data.product.variants.edges;
     let images : string[] = product.data.product.images.edges.map((edge: {node: { url : string}}) => edge.node.url);
 
@@ -47,20 +54,21 @@ export default async function Product({params} :
                         <div id={styles.id_description} dangerouslySetInnerHTML={{__html: product.data.product.descriptionHtml}}></div>
 
                     </div>
-                    <div className={"flex flex-col md:w-1/2"}>
+                    {reviews.length && <div className={"flex flex-col md:w-1/2"}>
                         <h2 className="text-xl font-semibold mb-4">Customer Reviews</h2>
-                        <p>Average Rating: {productReviewSummary?.evarageStar} ({productReviewSummary?.totalNum} reviews)</p>
+                        <p>Average
+                            Rating: {productReviewSummary?.evarageStar} ({productReviewSummary?.totalNum} reviews)</p>
                         <ol>
                             {reviews.map((r) => (
                                 <li key={r.evaluationId} className={"list-disc space-y-2"}>
                                     <p>{r.buyerTranslationFeedback}</p>
 
-                                    {r.images && r.images.length > 0 && <ImageCarousel images={r.images} />}
+                                    {r.images && r.images.length > 0 && <ImageCarousel images={r.images}/>}
                                     <div className="text-sm text-gray-600">Reviewed on {r.evalDate}</div>
                                 </li>
                             ))}
                         </ol>
-                    </div>
+                    </div>}
                 </div>
                 <p className="text-center text-2xl text-black">Related Products</p>
                 <div className="container p-8 flex justify-around flex-col md:flex-row">
