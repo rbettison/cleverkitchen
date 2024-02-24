@@ -19,7 +19,7 @@ export default async function Product({params} :
     let reviewJson;
     let productReviewSummary: ProductReviewSummary;
     let reviews: Review[] = [];
-    const hasAliExpressId = product.data.product.metafield ? !!product.data.product.metafield['value'] : false;
+    const hasAliExpressId: boolean = product.data.product.metafield ? !!product.data.product.metafield['value'] : false;
 
     if (hasAliExpressId) {
         reviewJson = await getReviewJson(product.data.product.metafield.value)
@@ -55,9 +55,10 @@ export default async function Product({params} :
 
                     </div>
                     {reviews.length && <div className={"flex flex-col md:w-1/2"}>
-                        <h2 className="text-xl font-semibold mb-4">Customer Reviews</h2>
-                        <p>Average
-                            Rating: {productReviewSummary?.evarageStar} ({productReviewSummary?.totalNum} reviews)</p>
+                        <div className={"text-4xl pb-3"}>Customer Reviews</div>
+                        <h2 className={"pb-3"}>
+                            {/*@ts-ignore*/}
+                            Average Rating: {productReviewSummary?.evarageStar} ({productReviewSummary?.totalNum} reviews)</h2>
                         <ol>
                             {reviews.map((r) => (
                                 <li key={r.evaluationId} className={"list-disc space-y-2"}>

@@ -8,7 +8,6 @@ export interface Review {
     buyerAddFbTranslation: string;
     buyerCountry: string;
     buyerEval: number;
-    buyerFbType: BuyerFeedbackType;
     buyerFeedback: string;
     buyerHeadPortrait: string;
     buyerName: string;

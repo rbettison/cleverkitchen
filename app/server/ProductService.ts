@@ -61,7 +61,7 @@ let productHandleQuery = `query SingleProductByHandle($handle: String!) {
   }
 }`;
 
-export async function getReviewJson(aliExpressId) {
+export async function getReviewJson(aliExpressId: string) {
     const url = `https://feedback.aliexpress.com/pc/searchEvaluation.do?productId=${aliExpressId}&lang=en_US&country=UK&page=1&pageSize=10&filter=all&sort=complex_default`;
     try {
         const response = await fetch(url);
@@ -77,10 +77,12 @@ export async function getReviewJson(aliExpressId) {
 }
 
 export function extractProductReviewSummaryFromJson(json: string): ProductReviewSummary {
+    // @ts-ignore
     return json['productEvaluationStatistic'] as ProductReviewSummary;
 }
 
 export function extractReviewsFromJson(json: string): Review[] {
+    // @ts-ignore
     return json['evaViewList'] as Review[]
 }
 
