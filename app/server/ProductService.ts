@@ -76,12 +76,12 @@ export async function getReviewJson(aliExpressId: string) {
     }
 }
 
-export function extractProductReviewSummaryFromJson(json: string): ProductReviewSummary {
+function extractProductReviewSummaryFromJson(json: string): ProductReviewSummary {
     // @ts-ignore
     return json['productEvaluationStatistic'] as ProductReviewSummary;
 }
 
-export function extractReviewsFromJson(json: string): Review[] {
+function extractReviewsFromJson(json: string): Review[] {
     // @ts-ignore
     return json['evaViewList'] as Review[]
 }
@@ -96,6 +96,7 @@ export async function getProductByHandle(productHandle: string) {
         let response = await gqlQuery(productHandleQuery, { handle: productHandle });
 
         if (response.data && response.data.product) {
+            await addReviewsToProduct(response);
             return response;
         } else {
             console.error('No product found for the given handle:', productHandle);
@@ -105,4 +106,21 @@ export async function getProductByHandle(productHandle: string) {
         console.error('Error fetching product by handle:', error);
         throw error;
     }
+}
+
+async function addReviewsToProduct(product: any) {
+    let reviewJson;
+    let productReviewSummary;
+    let reviews: Review[] = [];
+    const hasAliExpressId: boolean = product.data.product.metafield ? !!product.data.product.metafield['value'] : false;
+
+    if (hasAliExpressId) {
+        reviewJson = await getReviewJson(product.data.product.metafield.value)
+        productReviewSummary = extractProductReviewSummaryFromJson(reviewJson);
+        reviews = extractReviewsFromJson(reviewJson);
+    }
+
+    product.data.product.reviews = reviews;
+    product.data.product.productReviewSummary = productReviewSummary;
+    console.log('product data: ' + JSON.stringify(product.data.product.reviews))
 }

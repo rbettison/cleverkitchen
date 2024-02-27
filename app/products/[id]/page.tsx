@@ -1,31 +1,24 @@
 import AddToCart from "@/app/cart/components/AddToCart";
 import {
-    extractProductReviewSummaryFromJson, extractReviewsFromJson,
     getProductByHandle,
-    getProducts,
-    getReviewJson
+    getProducts
 } from "@/app/server/ProductService";
 import ProductCard from "@/app/components/ProductCard";
 import ImageCarousel from "@/app/components/ImageCarousel";
 import styles from "./page.module.css"
 import {ProductReviewSummary} from "@/app/types/productReviewSummary";
 import {Review} from "@/app/types/review";
+import ProductReviews from "@/app/components/ProductReviews";
 
 export default async function Product({params} : 
     { params: { id: string } }) {
 
     let products = await getProducts(2);
     let product = await getProductByHandle(params.id);
-    let reviewJson;
-    let productReviewSummary: ProductReviewSummary;
-    let reviews: Review[] = [];
-    const hasAliExpressId: boolean = product.data.product.metafield ? !!product.data.product.metafield['value'] : false;
 
-    if (hasAliExpressId) {
-        reviewJson = await getReviewJson(product.data.product.metafield.value)
-        productReviewSummary = extractProductReviewSummaryFromJson(await reviewJson);
-        reviews = extractReviewsFromJson(await reviewJson);
-    }
+    let productReviewSummary: ProductReviewSummary = product.data.product.productReviewSummary;
+    let reviews: Review[] = product.data.product.reviews;
+    
     let variants = product.data.product.variants.edges;
     let images : string[] = product.data.product.images.edges.map((edge: {node: { url : string}}) => edge.node.url);
 
@@ -54,23 +47,9 @@ export default async function Product({params} :
                         <div id={styles.id_description} dangerouslySetInnerHTML={{__html: product.data.product.descriptionHtml}}></div>
 
                     </div>
-                    {reviews.length && <div className={"flex flex-col md:w-1/2"}>
-                        <div className={"text-4xl pb-3"}>Customer Reviews</div>
-                        <h2 className={"pb-3"}>
-                            {/*@ts-ignore*/}
-                            Average Rating: {productReviewSummary?.evarageStar} ({productReviewSummary?.totalNum} reviews)</h2>
-                        <ol>
-                            {reviews.map((r) => (
-                                <li key={r.evaluationId} className={"list-disc space-y-2"}>
-                                    <p>{r.buyerTranslationFeedback}</p>
-
-                                    {r.images && r.images.length > 0 && <ImageCarousel images={r.images}/>}
-                                    <div className="text-sm text-gray-600">Reviewed on {r.evalDate}</div>
-                                </li>
-                            ))}
-                        </ol>
-                    </div>}
                 </div>
+                {reviews != undefined && reviews.length > 0 && 
+                        <ProductReviews reviews={reviews} productReviewSummary={productReviewSummary}/>}
                 <p className="text-center text-2xl text-black">Related Products</p>
                 <div className="container p-8 flex justify-around flex-col md:flex-row">
                     {products.data.products.edges.map((edge: any) => <ProductCard key={edge.node.handle} title={edge.node.title}
