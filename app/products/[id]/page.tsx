@@ -8,7 +8,7 @@ import ImageCarousel from "@/app/components/ImageCarousel";
 import styles from "./page.module.css"
 import {ProductReviewSummary} from "@/app/types/productReviewSummary";
 import {Review} from "@/app/types/review";
-import ProductReviews from "@/app/components/ProductReviews";
+import ProductReviews from "@/app/components/reviews/ProductReviews";
 
 export default async function Product({params} : 
     { params: { id: string } }) {
@@ -24,8 +24,8 @@ export default async function Product({params} :
 
     return (
         <>
-            <div className="mb-52">
-                <div className={"container mt-40 sm:mt-24 mb-40 p-8 flex justify-around align-middle flex-col gap-8 md:flex-row"} id={'product pic and description row'}>
+            <div className="mb-56">
+                <div className={"container mt-40 sm:mt-24 p-8 flex justify-around align-middle flex-col gap-8 md:flex-row"} id={'product pic and description row'}>
                     <div className={"md:w-1/2"}>
                         <ImageCarousel images={images} />
                         <div className={"pt-5"}>
@@ -48,9 +48,9 @@ export default async function Product({params} :
 
                     </div>
                 </div>
-                {reviews != undefined && reviews.length > 0 && 
-                        <ProductReviews reviews={reviews} productReviewSummary={productReviewSummary}/>}
-                <p className="text-center text-2xl text-black">Related Products</p>
+                {/* {reviews != undefined && reviews.length > 0 && 
+                        <ProductReviews reviews={reviews} productReviewSummary={productReviewSummary}/>} */}
+                <p className="text-center text-4xl text-black">Related Products</p>
                 <div className="container p-8 flex justify-around flex-col md:flex-row">
                     {products.data.products.edges.map((edge: any) => <ProductCard key={edge.node.handle} title={edge.node.title}
                                                                                   handle={edge.node.handle}
@@ -59,6 +59,9 @@ export default async function Product({params} :
                                                                                   price={edge.node.priceRange.maxVariantPrice.amount}
                                                                                   currencyCode={edge.node.priceRange.maxVariantPrice.currencyCode} />)}
                 </div>
+
+                {reviews != undefined && reviews.length > 0 && 
+                        <ProductReviews reviews={reviews} productReviewSummary={productReviewSummary}/>}
             </div>
         </>
 
