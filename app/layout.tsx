@@ -4,6 +4,7 @@ import { CartProvider } from './checkout/CartContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { Analytics } from '@vercel/analytics/react';
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   title: 'The Clever Kitchen',
@@ -21,6 +22,7 @@ export default function RootLayout({
         <html className="relative bg-background-100 font-light" lang="en">
         <body className="w-full container m-auto text-darkGrey-100 box-border min-h-screen">
         <Analytics />
+        <GoogleAnalytics gaId='G-37PJYG25RY'/>
         <Header />
           {children}
         <Footer />
