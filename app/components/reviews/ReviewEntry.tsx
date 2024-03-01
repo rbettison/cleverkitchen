@@ -4,7 +4,7 @@ import StarRating from "./StarRating";
 
 export default function ReviewEntry({r, hidden}: {r: Review, hidden: boolean}) {
     return (
-        <li key={r.evaluationId} className={`${hidden ? "hidden" : ""} sm:p-5 p-0 border-slate-400 border-b-2 `}>
+        <li key={r.evaluationId} className={`${hidden ? "hidden" : ""} sm:p-5 p-0 `}>
             <StarRating rating={r.buyerEval}/>
             <div>{r.buyerName} - <span className="text-sm text-gray-600">{r.evalDate}</span></div>
             <div className="flex flex-row flex-wrap gap-2 py-3">
