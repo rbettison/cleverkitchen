@@ -109,12 +109,15 @@ export async function getProductByHandle(productHandle: string) {
 }
 
 async function addReviewsToProduct(product: any) {
+    console.log('entering add reviews to product...')
     let reviewJson;
     let productReviewSummary;
     let reviews: Review[] = [];
     const hasAliExpressId: boolean = product.data.product.metafield ? !!product.data.product.metafield['value'] : false;
 
+
     if (hasAliExpressId) {
+        console.log('product has aliExpressID');
         reviewJson = await getReviewJson(product.data.product.metafield.value)
         productReviewSummary = extractProductReviewSummaryFromJson(reviewJson);
         reviews = extractReviewsFromJson(reviewJson);
