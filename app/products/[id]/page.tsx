@@ -43,7 +43,8 @@ export default async function Product({params} :
                         </div>
                     </div>
                     <div className={"flex flex-col md:w-1/2"}>
-                        <div className={"text-4xl pb-3"}>{product.data.product.title}</div>
+                        <div className={"text-4xl pb-3"}>{product.data.product.title} </div>
+                        <div className={"text-xl pb-3"}>£{product.data.product.priceRange.maxVariantPrice.amount} </div>
                         <div id={styles.id_description} dangerouslySetInnerHTML={{__html: product.data.product.descriptionHtml}}></div>
 
                     </div>
