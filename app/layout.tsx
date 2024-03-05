@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { Analytics } from '@vercel/analytics/react';
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   title: 'The Clever Kitchen',
@@ -22,6 +23,7 @@ export default function RootLayout({
         <html className="relative bg-background-100 font-light" lang="en">
         <body className="w-full container m-auto text-darkGrey-100 box-border min-h-screen">
         <Analytics />
+        <SpeedInsights />
         <GoogleAnalytics gaId='G-37PJYG25RY'/>
         <Header />
           {children}
